@@ -1,14 +1,19 @@
-const CACHE_NAME = 'fitness-her-v5';   // ← новая версия, чтобы старый кэш сбросился
+const CACHE_NAME = 'fitness-her-v6';
 const urlsToCache = [
   '.',
   'index.html',
   'style.css',
   'script.js',
   'manifest.json',
+
+  // Логотип
+  'images/logotips.jpg',
+
+  // Иконки приложения
   'icons/icon-192.png',
   'icons/icon-512.png',
 
-  // Все картинки упражнений — из images/
+  // Картинки упражнений
   'images/prisedsgantelgrud.jpg',
   'images/ruminskaitiaga.jpg',
   'images/iagodichnmostiksgant.jpg',
