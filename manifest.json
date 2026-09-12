@@ -1,5 +1,5 @@
 {
-  "name": "Фитнес для неё",
+  "name": "Домашний фитнес",
   "short_name": "Фитнес",
   "description": "Домашние тренировки для ягодиц, спины и осанки",
   "start_url": "./index.html",
@@ -11,27 +11,27 @@
   "lang": "ru",
   "icons": [
     {
-      "src": "icons/icon-192.png",
+      "src": "images/logotips.jpg",
       "sizes": "192x192",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "any"
     },
     {
-      "src": "icons/icon-192.png",
+      "src": "images/logotips.jpg",
       "sizes": "192x192",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "maskable"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "images/logotips.jpg",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "any"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "images/logotips.jpg",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "maskable"
     }
   ]
