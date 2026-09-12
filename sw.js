@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fitness-her-v2';
+const CACHE_NAME = 'fitness-her-v5';   // ← новая версия, чтобы старый кэш сбросился
 const urlsToCache = [
   '.',
   'index.html',
@@ -7,15 +7,24 @@ const urlsToCache = [
   'manifest.json',
   'icons/icon-192.png',
   'icons/icon-512.png',
-  'icons/prisedansgantel.jpg',
-  'icons/godicnmostik.jpg',
-  'icons/otchimania.jpg',
-  'icons/greblavnaklon.jpg',
-  'icons/csuknaspine.jpg',
-  'icons/bolgarskisplitpris.jpg',
-  'icons/mostiknaodnounage.jpg',
-  'icons/podtiagivaniechirokim.jpg',
-  'icons/planka.jpg'
+
+  // Все картинки упражнений — из images/
+  'images/prisedsgantelgrud.jpg',
+  'images/ruminskaitiaga.jpg',
+  'images/iagodichnmostiksgant.jpg',
+  'images/otchimotopor.jpg',
+  'images/tiagasgantelilevaia.jpg',
+  'images/tiagasgantelipravaia.jpg',
+  'images/chuknaspine.jpg',
+  'images/otvedenienogivstoronu.jpg',
+  'images/rakuchkalechanaboku.jpg',
+  'images/bolgarskisplitprised.jpg',
+  'images/sumoprisedsgantel.jpg',
+  'images/iagodichnimostiknaodnoinoge.jpg',
+  'images/podtiagivaniaprogressia.jpg',
+  'images/razvedenieganteleivnaklone.jpg',
+  'images/podiomiruky-t-vlechanachiv.jpg',
+  'images/planka.jpg'
 ];
 
 self.addEventListener('install', event => {
