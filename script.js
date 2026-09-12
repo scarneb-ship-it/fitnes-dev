@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-       const exerciseImages = {
-        // День A — новые картинки в images/
+          const exerciseImages = {
+        // День A
         'Приседания с гантелью у груди': 'images/prisedsgantelgrud.jpg',
         'Румынская тяга с гантелями': 'images/ruminskaitiaga.jpg',
         'Ягодичный мост с гантелью': 'images/iagodichnmostiksgant.jpg',
@@ -55,14 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
         'Отведения ноги в сторону (левая / правая)': 'images/otvedenienogivstoronu.jpg',
         'Ракушка лёжа на боку (левая / правая)': 'images/rakuchkalechanaboku.jpg',
 
-        // День B — старые из icons/ (если перенёс — поменяй на images/)
-        'Болгарский сплит-присед (левая / правая)': 'icons/bolgarskisplitpris.jpg',
-        'Сумо-присед с гантелью': 'images/prisedsgantelgrud.jpg',
-        'Ягодичный мост на одной ноге (левая / правая)': 'icons/mostiknaodnounage.jpg',
-        'Подтягивания: прогрессия': 'icons/podtiagivaniechirokim.jpg',
-        'Разведения гантелей в наклоне': 'images/tiagasgantelilevaia.jpg',
-        'Подъёмы рук Y-T-W лёжа на животе': 'icons/giperextenzia.jpg',
-        'Планка': 'icons/planka.jpg',
+        // День B
+        'Болгарский сплит-присед (левая / правая)': 'images/bolgarskisplitprised.jpg',
+        'Сумо-присед с гантелью': 'images/sumoprisedsgantel.jpg',
+        'Ягодичный мост на одной ноге (левая / правая)': 'images/iagodichnimostiknaodnoinoge.jpg',
+        'Подтягивания: прогрессия': 'images/podtiagivaniaprogressia.jpg',
+        'Разведения гантелей в наклоне': 'images/razvedenieganteleivnaklone.jpg',
+        'Подъёмы рук Y-T-W лёжа на животе': 'images/podiomiruky-t-vlechanachiv.jpg',
+        'Планка': 'images/planka.jpg',
 
         // День C
         'Приседания с гантелью': 'images/prisedsgantelgrud.jpg',
