@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { num: '3', name: 'Ягодичный мост с гантелью', sets: 3, mode: 'reps', repsLabel: '12–15', rest: 60, restLabel: '60 сек', note: 'Вверху сжать ягодицы на 1 сек.' },
                 { num: '4', name: 'Отжимания от опоры', sets: 3, mode: 'reps', repsLabel: '6–10', rest: 75, restLabel: '60–90 сек', note: 'Стена → стол → диван → колени → пол.' },
                 { num: '5', name: 'Тяга гантели в наклоне (левая / правая)', sets: 3, mode: 'reps', repsLabel: '10–12 на руку', sides: true, rest: 60, restLabel: '60 сек', note: 'Локоть тянем к поясу, спина прямая.' },
-                { num: '6', name: 'Dead bug (левая / правая)', sets: 3, mode: 'reps', repsLabel: '8–10 на сторону', sides: true, rest: 45, restLabel: '45 сек', note: 'Поясница прижата к полу.' },
+                { num: '6', name: 'Жук на спине (левая / правая)', sets: 3, mode: 'reps', repsLabel: '8–10 на сторону', sides: true, rest: 45, restLabel: '45 сек', note: 'Поясница прижата к полу.' },
                 { num: '7', name: 'Отведения ноги в сторону (левая / правая)', sets: 2, mode: 'reps', repsLabel: '15 на ногу', sides: true, rest: 45, restLabel: '45 сек', note: 'В упоре на четвереньках, медленно.' },
                 { num: '8', name: 'Ракушка лёжа на боку (левая / правая)', sets: 2, mode: 'reps', repsLabel: '15 на ногу', sides: true, rest: 45, restLabel: '45 сек', note: 'Колени согнуты, стопы вместе, разводим колено.' }
             ]
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { num: '3', name: 'Ягодичный мост на одной ноге (левая / правая)', sets: 3, mode: 'reps', repsLabel: '10–15 на ногу', sides: true, rest: 60, restLabel: '60 сек', note: 'Вверху пауза и сжатие.' },
                 { num: '4', name: 'Подтягивания: прогрессия', sets: 3, mode: 'reps', repsLabel: 'вис + негативы', rest: 90, restLabel: '90 сек', note: 'Вис 10–20 сек → лопаточные 5–8 → негативы 3–5.' },
                 { num: '5', name: 'Разведения гантелей в наклоне', sets: 3, mode: 'reps', repsLabel: '12–15', rest: 60, restLabel: '60 сек', note: 'Лёгкий вес, сводим лопатки.' },
-                { num: '6', name: 'Y-T-W лёжа на животе', sets: 2, mode: 'reps', repsLabel: '10 каждой буквы', rest: 45, restLabel: '45 сек', note: 'Сводим лопатки, руки не задираем.' },
+                { num: '6', name: 'Подъёмы рук Y-T-W лёжа на животе', sets: 2, mode: 'reps', repsLabel: '10 каждой буквы', rest: 45, restLabel: '45 сек', note: 'Сводим лопатки, руки не задираем.' },
                 { num: '7', name: 'Планка', sets: 3, mode: 'time', duration: 40, durationLabel: '30–45 сек', rest: 45, restLabel: '45 сек', note: 'Живот подтянут, поясница не проваливается.' }
             ]
         },
@@ -38,29 +38,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 { num: '2', name: 'Ягодичный мост', mode: 'reps', repsLabel: '15', tech: 'Сжать ягодицы вверху на 1 сек.' },
                 { num: '3', name: 'Тяга гантели в наклоне (левая / правая)', mode: 'reps', repsLabel: '12 на руку', sides: true, tech: 'Локоть к поясу, спина прямая.' },
                 { num: '4', name: 'Отжимания от опоры', mode: 'reps', repsLabel: '8–10', tech: 'Тело одной линией.' },
-                { num: '5', name: 'Dead bug', mode: 'reps', repsLabel: '10 на сторону', sides: true, tech: 'Поясница прижата к полу.' },
+                { num: '5', name: 'Жук на спине (левая / правая)', mode: 'reps', repsLabel: '10 на сторону', sides: true, tech: 'Поясница прижата к полу.' },
                 { num: '6', name: 'Планка', mode: 'time', duration: 30, tech: 'Живот подтянут.' }
             ]
         }
     };
 
     const exerciseImages = {
+        // День A
         'Приседания с гантелью у груди': 'icons/prisedansgantel.jpg',
+        'Румынская тяга с гантелями': 'icons/greblavnaklon.jpg',
         'Ягодичный мост с гантелью': 'icons/godicnmostik.jpg',
         'Отжимания от опоры': 'icons/otchimania.jpg',
         'Тяга гантели в наклоне (левая / правая)': 'icons/greblavnaklon.jpg',
-        'Dead bug (левая / правая)': 'icons/csuknaspine.jpg',
+        'Жук на спине (левая / правая)': 'icons/csuknaspine.jpg',
+        'Отведения ноги в сторону (левая / правая)': 'icons/mostiknaodnounage.jpg',
+        'Ракушка лёжа на боку (левая / правая)': 'icons/mostiknaodnounage.jpg',
+
+        // День B
         'Болгарский сплит-присед (левая / правая)': 'icons/bolgarskisplitpris.jpg',
         'Сумо-присед с гантелью': 'icons/prisedansgantel.jpg',
         'Ягодичный мост на одной ноге (левая / правая)': 'icons/mostiknaodnounage.jpg',
         'Подтягивания: прогрессия': 'icons/podtiagivaniechirokim.jpg',
         'Разведения гантелей в наклоне': 'icons/greblavnaklon.jpg',
+        'Подъёмы рук Y-T-W лёжа на животе': 'icons/giperextenzia.jpg',
         'Планка': 'icons/planka.jpg',
+
+        // День C
         'Приседания с гантелью': 'icons/prisedansgantel.jpg',
         'Ягодичный мост': 'icons/godicnmostik.jpg',
-        'Тяга гантели в наклоне': 'icons/greblavnaklon.jpg',
-        'Dead bug': 'icons/csuknaspine.jpg'
+        'Тяга гантели в наклоне (левая / правая)': 'icons/greblavnaklon.jpg',
+        'Жук на спине (левая / правая)': 'icons/csuknaspine.jpg'
     };
+
+    // Красивый fallback: если картинки нет — розовый кружок с буквой
+    function getExercisePlate(ex) {
+        const imgSrc = exerciseImages[ex.name];
+        if (imgSrc) {
+            return `<img src="${imgSrc}" alt="${ex.name}" class="plate">`;
+        }
+        const letter = (ex.name || '?').trim().charAt(0).toUpperCase();
+        return `<span class="plate plate--letter">${letter}</span>`;
+    }
 
     /* ========== STORAGE ========== */
     const LOG_KEY = 'ironplan_log_v2';
@@ -774,8 +793,7 @@ ${buildWorkoutHistoryDescription()}
     function exerciseCard(ex, exIdx, dayKey) {
         const done = sessionDone[dayKey].has(exIdx);
         const repsText = ex.mode==='time'?(ex.durationLabel||`${ex.duration} сек`):ex.repsLabel;
-        const imgSrc = exerciseImages[ex.name];
-        const plateContent = imgSrc ? `<img src="${imgSrc}" alt="${ex.name}" class="plate">` : ``;
+        const plateContent = getExercisePlate(ex);
         return `<div class="card ${done?'is-done':''}" data-day="${dayKey}" data-ex="${exIdx}" style="animation-delay:${exIdx*0.04}s">
             ${plateContent}
             <div class="card__body">
@@ -790,8 +808,7 @@ ${buildWorkoutHistoryDescription()}
         const day = DAYS[dayKey];
         if (day.circuit) {
             const rows = day.exercises.map(ex=>{
-                const imgSrc = exerciseImages[ex.name];
-                const plateContent = imgSrc ? `<img src="${imgSrc}" alt="${ex.name}" class="plate">` : ``;
+                const plateContent = getExercisePlate(ex);
                 return `<div class="circuit-item">${plateContent}<div class="card__body"><p class="card__name">${ex.name}</p><div class="card__stats"><span>${ex.mode==='time'?ex.duration+' сек':ex.repsLabel}</span></div></div></div>`;
             }).join('');
             mainContent.innerHTML = `<div class="section-head"><div><h2>${day.title}</h2><p>${day.subtitle}</p></div></div>
