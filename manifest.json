@@ -1,12 +1,12 @@
 {
-  "name": "Домашний фитнес",
+  "name": "Фитнес для неё",
   "short_name": "Фитнес",
-  "description": "Домашняя тренировка для девушки: 2 дня, гантели, турник, кор",
+  "description": "Домашние тренировки для ягодиц, спины и осанки",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#FFF5F8",
+  "background_color": "#FFF8FB",
   "theme_color": "#EC4899",
   "lang": "ru",
   "icons": [
