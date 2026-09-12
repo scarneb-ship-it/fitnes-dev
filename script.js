@@ -813,6 +813,7 @@ ${buildWorkoutHistoryDescription()}
         [...dayTabs.querySelectorAll('.tab')].forEach(t=>t.classList.toggle('is-active', t.dataset.view===currentView));
         scrollToTab(currentView);
     }
+    // ⬇⬇⬇ ИЗМЕНЕНИЕ: убрана строка с подсказкой ${ex.note?...} ⬇⬇⬇
     function exerciseCard(ex, exIdx, dayKey) {
         const done = sessionDone[dayKey].has(exIdx);
         const repsText = ex.mode==='time'?(ex.durationLabel||`${ex.duration} сек`):ex.repsLabel;
@@ -822,7 +823,6 @@ ${buildWorkoutHistoryDescription()}
             <div class="card__body">
                 <p class="card__name">${ex.name}</p>
                 <div class="card__stats"><span>${ex.sets} подх.</span><span>${repsText}</span><span>отдых ${ex.restLabel}</span></div>
-                ${ex.note?`<span class="card__alt">${ex.note}</span>`:''}
             </div>
             <button class="card__go" aria-label="Начать"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button>
         </div>`;
