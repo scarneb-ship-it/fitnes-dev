@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
-    <meta name="color-scheme" content="dark light">
-    <title>Домашний фитнес</title>
+    <meta name="color-scheme" content="light dark">
+    <title>Фитнес для неё</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#FFF8FB">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Домашний фитнес">
+    <meta name="apple-mobile-web-app-title" content="Фитнес для неё">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,15 +26,16 @@
         <header class="appbar">
             <img class="appbar__logo" src="icons/icon-192.png" alt="">
             <div class="appbar__brand">
-                <h1>Домашний фитнес</h1>
-                <p>2 дня · гантели + турник + кор</p>
+                <h1>Фитнес для неё</h1>
+                <p>2–3 раза в неделю · ягодицы · спина · осанка</p>
             </div>
         </header>
 
         <nav class="tabs-container" id="tabsContainer">
             <div class="tabs" id="dayTabs">
-                <button class="tab" data-view="A"><span class="tab__label">День A · База<em>Низ · тяга · грудь · кор</em></span></button>
-                <button class="tab" data-view="B"><span class="tab__label">День B · Попа<em>Ягодицы · спина · кор</em></span></button>
+                <button class="tab" data-view="A"><span class="tab__label">Ноги и ягодицы<em>+ грудь и кор</em></span></button>
+                <button class="tab" data-view="B"><span class="tab__label">Спина и осанка<em>+ ягодицы</em></span></button>
+                <button class="tab" data-view="C"><span class="tab__label">Короткая<em>25–30 мин · круг</em></span></button>
             </div>
         </nav>
 
@@ -75,8 +76,8 @@
                 <div class="setting-item">
                     <span>Тема</span>
                     <select id="themeSelect">
+                        <option value="light">Светлая (розовая)</option>
                         <option value="system">Системная</option>
-                        <option value="light">Светлая</option>
                         <option value="dark">Тёмная</option>
                     </select>
                 </div>
@@ -119,7 +120,7 @@
     </button>
 </nav>
 
-<!-- ===================== ПЛЕЕР ===================== -->
+<!-- ===================== ПЛЕЕР (полноэкранный) ===================== -->
 <div class="player" id="player" hidden>
     <div class="player__top">
         <button class="player__close" id="playerClose" aria-label="Закрыть тренировку">
@@ -131,7 +132,7 @@
         <div class="player__exercise">
             <span class="player__badge" id="playerNum">—</span>
             <h2 id="playerName">Упражнение</h2>
-            <p class="player__meta" id="playerMeta">Подход 1 / 3</p>
+            <p class="player__meta" id="playerMeta">Подход 1 / 4</p>
             <div class="player__next" id="nextExercise" hidden>
                 <span>Следующее:</span>
                 <strong id="nextExerciseName"></strong>
@@ -168,7 +169,7 @@
         <p>Во всех подходах базовых упражнений получилось выполнить максимум повторений?</p>
         <div class="weight-input">
             <label for="workoutWeight">Вес гантелей (кг):</label>
-            <input type="number" id="workoutWeight" min="0" step="0.5" placeholder="Напр. 4" inputmode="decimal">
+            <input type="number" id="workoutWeight" min="0" step="0.5" placeholder="Напр. 6" inputmode="decimal">
         </div>
         <div class="modal__row">
             <button class="btn btn--ghost" id="qualityNo">Не всегда</button>
