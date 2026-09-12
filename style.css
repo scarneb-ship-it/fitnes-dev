@@ -277,6 +277,16 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; margin: 0; }
 img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
 .card.is-done .plate { color: var(--go); }
 
+/* Fallback-плашка без картинки — розовый кружок с буквой */
+.plate--letter {
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 20px;
+    border: 1px solid var(--accent);
+}
+
 .card__body { flex: 1; min-width: 0; }
 .card__name { font-size: 14px; font-weight: 600; margin: 0 0 4px; line-height: 1.3; }
 .card__stats {
