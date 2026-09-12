@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fitness-her-v6';
+const CACHE_NAME = 'fitness-her-v10';
 const urlsToCache = [
   '.',
   'index.html',
@@ -6,12 +6,8 @@ const urlsToCache = [
   'script.js',
   'manifest.json',
 
-  // Логотип
-  'images/logotips.jpg',
-
-  // Иконки приложения
-  'icons/icon-192.png',
-  'icons/icon-512.png',
+  // Логотип приложения (PNG)
+  'images/logotipt.png',
 
   // Картинки упражнений
   'images/prisedsgantelgrud.jpg',
