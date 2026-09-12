@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ironplan-v22';
+const CACHE_NAME = 'ironplan-v23';
 const urlsToCache = [
   '.',
   'index.html',
@@ -7,7 +7,7 @@ const urlsToCache = [
   'manifest.json',
   'icons/icon-192.png',
   'icons/icon-512.png',
-  // Картинки для новых упражнений. Если каких-то файлов нет — просто пропустятся.
+  // Картинки для упражнений. Если каких-то файлов нет — просто пропустятся.
   'icons/prisedansgantel.jpg',            // гоблет-присед
   'icons/rumynskatyaga.jpg',              // румынская тяга
   'icons/otchimania.jpg',                 // отжимания от опоры
