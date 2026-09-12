@@ -1,57 +1,39 @@
-/* ============ ТЕМЫ ============ */
+/* ============ ТЕМЫ (розовая светлая по умолчанию) ============ */
 :root {
-    --bg: #000000;
-    --surface: #141519;
-    --surface-elev: #1C1E24;
-    --border: #262830;
-    --text: #FFFFFF;
+    --bg: #FFF8FB;
+    --surface: #FFFFFF;
+    --surface-elev: #FDF2F6;
+    --border: #F4DCE5;
+    --text: #1F1F2E;
     --text-secondary: #8A8D93;
     --accent: #EC4899;
-    --accent-dim: #2A0E1E;
-    --rest: #3B82F6;
-    --rest-dim: #101B2E;
-    --go: #10B981;
-    --go-dim: #0A261D;
-    --appbar-bg: rgba(0,0,0,0.72);
-    --nav-bg: rgba(20,21,25,0.9);
-    --sheet-bg: #1A1C22;
+    --accent-dim: #FCE7F3;
+    --rest: #A78BFA;
+    --rest-dim: #EDE9FE;
+    --go: #EC4899;
+    --go-dim: #FCE7F3;
+    --appbar-bg: rgba(255,248,251,0.82);
+    --nav-bg: rgba(255,248,251,0.94);
+    --sheet-bg: #FFFFFF;
     --nav-height: 64px;
 }
 
-[data-theme="light"] {
-    --bg: #FFFFFF;
-    --surface: #F2F2F7;
-    --surface-elev: #FFFFFF;
-    --border: #E2E2E7;
-    --text: #000000;
-    --text-secondary: #6C6C70;
-    --accent-dim: #FFE4F0;
-    --rest: #0066CC;
-    --rest-dim: #E6F0FF;
-    --go: #008556;
-    --go-dim: #E6FAF0;
-    --appbar-bg: rgba(255,255,255,0.82);
-    --nav-bg: rgba(255,255,255,0.94);
-    --sheet-bg: #FFFFFF;
-}
-
-@media (prefers-color-scheme: light) {
-    :root:not([data-theme]) {
-        --bg: #FFFFFF;
-        --surface: #F2F2F7;
-        --surface-elev: #FFFFFF;
-        --border: #E2E2E7;
-        --text: #000000;
-        --text-secondary: #6C6C70;
-        --accent-dim: #FFE4F0;
-        --rest: #0066CC;
-        --rest-dim: #E6F0FF;
-        --go: #008556;
-        --go-dim: #E6FAF0;
-        --appbar-bg: rgba(255,255,255,0.82);
-        --nav-bg: rgba(255,255,255,0.94);
-        --sheet-bg: #FFFFFF;
-    }
+[data-theme="dark"] {
+    --bg: #1A1420;
+    --surface: #241A2E;
+    --surface-elev: #2D2138;
+    --border: #3D2D4A;
+    --text: #FFFFFF;
+    --text-secondary: #B8A8C4;
+    --accent: #F472B6;
+    --accent-dim: #3D1F33;
+    --rest: #A78BFA;
+    --rest-dim: #2A1F3D;
+    --go: #F472B6;
+    --go-dim: #3D1F33;
+    --appbar-bg: rgba(26,20,32,0.82);
+    --nav-bg: rgba(36,26,46,0.94);
+    --sheet-bg: #241A2E;
 }
 
 /* ============ БАЗА ============ */
@@ -129,7 +111,6 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; margin: 0; }
     to { opacity: 1; transform: none; }
 }
 
-/* Экран ИИ фиксированной высоты, внутренний скролл */
 .screen--ai {
     height: 100dvh;
     padding: 0;
@@ -137,7 +118,6 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; margin: 0; }
     overflow: hidden;
 }
 
-/* Когда открыта клавиатура — экран "прилипает" к видимой области */
 .screen--ai.is-keyboard-open {
     position: fixed;
     left: 0;
@@ -193,7 +173,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; margin: 0; }
 .appbar__brand h1 { font-size: 17px; font-weight: 700; line-height: 1.2; }
 .appbar__brand p { margin: 2px 0 0; font-size: 11.5px; color: var(--text-secondary); }
 
-/* ============ TABS ============ */
+/* ============ TABS (A / B / C) ============ */
 .tabs-container {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -278,7 +258,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; margin: 0; }
     animation: fadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .card:active { transform: scale(0.985); background: var(--surface-elev); }
-.card.is-done { border-color: rgba(16,185,129,0.4); }
+.card.is-done { border-color: rgba(236,72,153,0.4); }
 
 .plate {
     flex-shrink: 0;
@@ -291,9 +271,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; margin: 0; }
     justify-content: center;
     font-family: 'Space Mono', monospace;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text-secondary);
-    text-align: center;
 }
 img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
 .card.is-done .plate { color: var(--go); }
@@ -315,7 +294,7 @@ img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
     display: inline-block;
     padding: 3px 8px;
     border-radius: 100px;
-    border: 1px solid rgba(59,130,246,0.3);
+    border: 1px solid rgba(167,139,250,0.3);
 }
 
 .card__go {
@@ -356,7 +335,7 @@ img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
     display: flex; align-items: center; gap: 10px;
     padding: 10px; border-radius: 12px; background: var(--bg);
 }
-.circuit-item .plate { width: 40px; height: 40px; font-size: 11px; border-radius: 10px; }
+.circuit-item .plate { width: 40px; height: 40px; font-size: 12px; border-radius: 10px; }
 .circuit-item .card__name { font-size: 13px; }
 .circuit-item .card__stats { font-size: 11px; }
 
@@ -518,7 +497,7 @@ img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
     background: var(--rest-dim);
     padding: 8px 12px;
     border-radius: 10px;
-    border: 1px solid rgba(59,130,246,0.25);
+    border: 1px solid rgba(167,139,250,0.25);
     line-height: 1.4;
 }
 
@@ -605,7 +584,7 @@ img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.55);
+    background: rgba(31,31,46,0.35);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     display: flex;
@@ -652,6 +631,7 @@ img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
 .modal__row { display: flex; gap: 10px; margin-top: 16px; }
 .modal__row .btn { flex: 1; font-size: 13.5px; padding: 12px 8px; }
 
+/* Weight input */
 .weight-input { margin-bottom: 4px; text-align: left; }
 .weight-input label {
     display: block;
@@ -749,7 +729,7 @@ img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
     background: #fff;
     transition: 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
 }
 .toggle input:checked + .toggle__slider { background: var(--accent); }
 .toggle input:checked + .toggle__slider:before { transform: translateX(22px); }
@@ -781,7 +761,6 @@ img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
     font-size: 14px;
     line-height: 1.45;
     word-wrap: break-word;
-    white-space: pre-wrap;
     animation: msgIn 0.25s ease;
 }
 @keyframes msgIn {
