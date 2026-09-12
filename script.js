@@ -46,34 +46,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const exerciseImages = {
         // День A
-        'Приседания с гантелью у груди': 'icons/prisedansgantel.jpg',
-        'Румынская тяга с гантелями': 'icons/greblavnaklon.jpg',
-        'Ягодичный мост с гантелью': 'icons/godicnmostik.jpg',
-        'Отжимания от опоры': 'icons/otchimania.jpg',
-        'Тяга гантели в наклоне (левая / правая)': 'icons/greblavnaklon.jpg',
-        'Жук на спине (левая / правая)': 'icons/csuknaspine.jpg',
-        'Отведения ноги в сторону (левая / правая)': 'icons/mostiknaodnounage.jpg',
-        'Ракушка лёжа на боку (левая / правая)': 'icons/mostiknaodnounage.jpg',
+        'Приседания с гантелью у груди': 'icons/prisedsgantelgrud.jpg',
+        'Румынская тяга с гантелями': 'icons/ruminskaitiaga.jpg',
+        'Ягодичный мост с гантелью': 'icons/iagodichnmostiksgant.jpg',
+        'Отжимания от опоры': 'icons/otchimotopor.jpg',
+        'Тяга гантели в наклоне (левая / правая)': { left: 'icons/tiagasgantelilevaia.jpg', right: 'icons/tiagasgantelipravaia.jpg' },
+        'Жук на спине (левая / правая)': 'icons/chuknaspine.jpg',
+        'Отведения ноги в сторону (левая / правая)': 'icons/otvedenienogivstoronu.jpg',
+        'Ракушка лёжа на боку (левая / правая)': 'icons/rakuchkalechanaboku.jpg',
 
         // День B
         'Болгарский сплит-присед (левая / правая)': 'icons/bolgarskisplitpris.jpg',
-        'Сумо-присед с гантелью': 'icons/prisedansgantel.jpg',
+        'Сумо-присед с гантелью': 'icons/prisedsgantelgrud.jpg',
         'Ягодичный мост на одной ноге (левая / правая)': 'icons/mostiknaodnounage.jpg',
         'Подтягивания: прогрессия': 'icons/podtiagivaniechirokim.jpg',
-        'Разведения гантелей в наклоне': 'icons/greblavnaklon.jpg',
+        'Разведения гантелей в наклоне': 'icons/tiagasgantelilevaia.jpg',
         'Подъёмы рук Y-T-W лёжа на животе': 'icons/giperextenzia.jpg',
         'Планка': 'icons/planka.jpg',
 
         // День C
-        'Приседания с гантелью': 'icons/prisedansgantel.jpg',
-        'Ягодичный мост': 'icons/godicnmostik.jpg',
-        'Тяга гантели в наклоне (левая / правая)': 'icons/greblavnaklon.jpg',
-        'Жук на спине (левая / правая)': 'icons/csuknaspine.jpg'
+        'Приседания с гантелью': 'icons/prisedsgantelgrud.jpg',
+        'Ягодичный мост': 'icons/iagodichnmostiksgant.jpg',
+        'Тяга гантели в наклоне (левая / правая)': { left: 'icons/tiagasgantelilevaia.jpg', right: 'icons/tiagasgantelipravaia.jpg' },
+        'Жук на спине (левая / правая)': 'icons/chuknaspine.jpg'
     };
 
-    // Красивый fallback: если картинки нет — розовый кружок с буквой
-    function getExercisePlate(ex) {
-        const imgSrc = exerciseImages[ex.name];
+    function getImageForExercise(name, side) {
+        const entry = exerciseImages[name];
+        if (!entry) return null;
+        if (typeof entry === 'string') return entry;
+        if (typeof entry === 'object') {
+            if (side && /прав/i.test(side)) return entry.right || entry.left || null;
+            if (side && /лев/i.test(side)) return entry.left || entry.right || null;
+            return entry.right || entry.left || null;
+        }
+        return null;
+    }
+
+    function getExercisePlate(ex, side) {
+        const imgSrc = getImageForExercise(ex.name, side);
         if (imgSrc) {
             return `<img src="${imgSrc}" alt="${ex.name}" class="plate">`;
         }
@@ -498,7 +509,11 @@ ${buildWorkoutHistoryDescription()}
     function haptic(ms) { if (navigator.vibrate) { try { navigator.vibrate(ms); } catch(_){} } }
 
     /* ========== STEP GENERATION ========== */
-    function enrichStep(step, ex) { if (ex && exerciseImages[ex.name]) step.image = exerciseImages[ex.name]; return step; }
+    function enrichStep(step, ex, side) {
+        const img = getImageForExercise(ex.name, side);
+        if (img) step.image = img;
+        return step;
+    }
     function makeWorkStep(ex, exIdx, totalEx, setNum, totalSets, side) {
         return {
             kind:'work', exNum:ex.num, exName:ex.name, exIdx, totalEx,
@@ -527,9 +542,9 @@ ${buildWorkoutHistoryDescription()}
             if (exIdx < fromExerciseIdx) return;
             for (let s=1; s<=ex.sets; s++) {
                 if (ex.sides) {
-                    ['левая','правая'].forEach(side=>list.push(enrichStep(makeWorkStep(ex,exIdx,day.exercises.length,s,ex.sets,side),ex)));
+                    ['левая','правая'].forEach(side=>list.push(enrichStep(makeWorkStep(ex,exIdx,day.exercises.length,s,ex.sets,side),ex,side)));
                 } else {
-                    list.push(enrichStep(makeWorkStep(ex,exIdx,day.exercises.length,s,ex.sets,null),ex));
+                    list.push(enrichStep(makeWorkStep(ex,exIdx,day.exercises.length,s,ex.sets,null),ex,null));
                 }
                 const lastSet = s===ex.sets, lastEx = exIdx===day.exercises.length-1;
                 if (!lastSet) list.push(makeRestStep(ex,exIdx,day.exercises.length,`Подход ${s} из ${ex.sets}`,ex.rest,ex.restLabel));
@@ -543,9 +558,9 @@ ${buildWorkoutHistoryDescription()}
         for (let r=1; r<=day.rounds; r++) {
             day.exercises.forEach((ex,exIdx)=>{
                 if (ex.sides) {
-                    ['правая','левая'].forEach(side=>list.push(enrichStep(makeCircuitWorkStep(ex,exIdx,day.exercises.length,r,day.rounds,side),ex)));
+                    ['правая','левая'].forEach(side=>list.push(enrichStep(makeCircuitWorkStep(ex,exIdx,day.exercises.length,r,day.rounds,side),ex,side)));
                 } else {
-                    list.push(enrichStep(makeCircuitWorkStep(ex,exIdx,day.exercises.length,r,day.rounds,null),ex));
+                    list.push(enrichStep(makeCircuitWorkStep(ex,exIdx,day.exercises.length,r,day.rounds,null),ex,null));
                 }
             });
             if (r<day.rounds) list.push({kind:'rest',exNum:'',exName:'Отдых между кругами',exIdx:-1,totalEx:day.exercises.length,setLabel:`Круг ${r} из ${day.rounds}`,duration:day.restBetweenRounds,note:null});
@@ -793,7 +808,7 @@ ${buildWorkoutHistoryDescription()}
     function exerciseCard(ex, exIdx, dayKey) {
         const done = sessionDone[dayKey].has(exIdx);
         const repsText = ex.mode==='time'?(ex.durationLabel||`${ex.duration} сек`):ex.repsLabel;
-        const plateContent = getExercisePlate(ex);
+        const plateContent = getExercisePlate(ex, 'правая');
         return `<div class="card ${done?'is-done':''}" data-day="${dayKey}" data-ex="${exIdx}" style="animation-delay:${exIdx*0.04}s">
             ${plateContent}
             <div class="card__body">
@@ -808,7 +823,7 @@ ${buildWorkoutHistoryDescription()}
         const day = DAYS[dayKey];
         if (day.circuit) {
             const rows = day.exercises.map(ex=>{
-                const plateContent = getExercisePlate(ex);
+                const plateContent = getExercisePlate(ex, 'правая');
                 return `<div class="circuit-item">${plateContent}<div class="card__body"><p class="card__name">${ex.name}</p><div class="card__stats"><span>${ex.mode==='time'?ex.duration+' сек':ex.repsLabel}</span></div></div></div>`;
             }).join('');
             mainContent.innerHTML = `<div class="section-head"><div><h2>${day.title}</h2><p>${day.subtitle}</p></div></div>
