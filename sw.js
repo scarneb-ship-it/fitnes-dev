@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ironplan-v24';
+const CACHE_NAME = 'ironplan-v23';
 const urlsToCache = [
   '.',
   'index.html',
@@ -8,20 +8,20 @@ const urlsToCache = [
   'icons/icon-192.png',
   'icons/icon-512.png',
   // Картинки для упражнений. Если каких-то файлов нет — просто пропустятся.
-  'icons/prisedansgantel.jpg',
-  'icons/rumynskatyaga.jpg',
-  'icons/otchimania.jpg',
-  'icons/greblavnaklon.jpg',
-  'icons/godicnmostik.jpg',
-  'icons/podtiagivaniechirokim.jpg',
-  'icons/planka.jpg',
-  'icons/bolgarskisplitpris.jpg',
-  'icons/mostiknaodnounage.jpg',
-  'icons/chimgantelnadgolov.jpg',
-  'icons/podemgantelvstoronu.jpg',
-  'icons/podtiagivaniaobratnimhvat.jpg',
-  'icons/clamshell.jpg',
-  'icons/csuknaspine.jpg'
+  'icons/prisedansgantel.jpg',            // гоблет-присед
+  'icons/rumynskatyaga.jpg',              // румынская тяга
+  'icons/otchimania.jpg',                 // отжимания от опоры
+  'icons/greblavnaklon.jpg',              // тяга гантели в наклоне
+  'icons/godicnmostik.jpg',               // ягодичный мост
+  'icons/podtiagivaniechirokim.jpg',      // вис на турнике
+  'icons/planka.jpg',                     // планка
+  'icons/bolgarskisplitpris.jpg',         // болгарский сплит-присед
+  'icons/mostiknaodnounage.jpg',          // ягодичный мост одной ногой
+  'icons/chimgantelnadgolov.jpg',         // жим гантелей стоя/сидя
+  'icons/podemgantelvstoronu.jpg',        // разведения в наклоне
+  'icons/podtiagivaniaobratnimhvat.jpg',  // негативы подтягиваний
+  'icons/clamshell.jpg',                  // разведение коленей лёжа
+  'icons/csuknaspine.jpg'                 // dead bug / птица-собака
 ];
 
 self.addEventListener('install', event => {
