@@ -44,31 +44,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    const exerciseImages = {
-        // День A
-        'Приседания с гантелью у груди': 'icons/prisedsgantelgrud.jpg',
-        'Румынская тяга с гантелями': 'icons/ruminskaitiaga.jpg',
-        'Ягодичный мост с гантелью': 'icons/iagodichnmostiksgant.jpg',
-        'Отжимания от опоры': 'icons/otchimotopor.jpg',
-        'Тяга гантели в наклоне (левая / правая)': { left: 'icons/tiagasgantelilevaia.jpg', right: 'icons/tiagasgantelipravaia.jpg' },
-        'Жук на спине (левая / правая)': 'icons/chuknaspine.jpg',
-        'Отведения ноги в сторону (левая / правая)': 'icons/otvedenienogivstoronu.jpg',
-        'Ракушка лёжа на боку (левая / правая)': 'icons/rakuchkalechanaboku.jpg',
+       const exerciseImages = {
+        // День A — новые картинки в images/
+        'Приседания с гантелью у груди': 'images/prisedsgantelgrud.jpg',
+        'Румынская тяга с гантелями': 'images/ruminskaitiaga.jpg',
+        'Ягодичный мост с гантелью': 'images/iagodichnmostiksgant.jpg',
+        'Отжимания от опоры': 'images/otchimotopor.jpg',
+        'Тяга гантели в наклоне (левая / правая)': { left: 'images/tiagasgantelilevaia.jpg', right: 'images/tiagasgantelipravaia.jpg' },
+        'Жук на спине (левая / правая)': 'images/chuknaspine.jpg',
+        'Отведения ноги в сторону (левая / правая)': 'images/otvedenienogivstoronu.jpg',
+        'Ракушка лёжа на боку (левая / правая)': 'images/rakuchkalechanaboku.jpg',
 
-        // День B
+        // День B — старые из icons/ (если перенёс — поменяй на images/)
         'Болгарский сплит-присед (левая / правая)': 'icons/bolgarskisplitpris.jpg',
-        'Сумо-присед с гантелью': 'icons/prisedsgantelgrud.jpg',
+        'Сумо-присед с гантелью': 'images/prisedsgantelgrud.jpg',
         'Ягодичный мост на одной ноге (левая / правая)': 'icons/mostiknaodnounage.jpg',
         'Подтягивания: прогрессия': 'icons/podtiagivaniechirokim.jpg',
-        'Разведения гантелей в наклоне': 'icons/tiagasgantelilevaia.jpg',
+        'Разведения гантелей в наклоне': 'images/tiagasgantelilevaia.jpg',
         'Подъёмы рук Y-T-W лёжа на животе': 'icons/giperextenzia.jpg',
         'Планка': 'icons/planka.jpg',
 
         // День C
-        'Приседания с гантелью': 'icons/prisedsgantelgrud.jpg',
-        'Ягодичный мост': 'icons/iagodichnmostiksgant.jpg',
-        'Тяга гантели в наклоне (левая / правая)': { left: 'icons/tiagasgantelilevaia.jpg', right: 'icons/tiagasgantelipravaia.jpg' },
-        'Жук на спине (левая / правая)': 'icons/chuknaspine.jpg'
+        'Приседания с гантелью': 'images/prisedsgantelgrud.jpg',
+        'Ягодичный мост': 'images/iagodichnmostiksgant.jpg',
+        'Тяга гантели в наклоне (левая / правая)': { left: 'images/tiagasgantelilevaia.jpg', right: 'images/tiagasgantelipravaia.jpg' },
+        'Жук на спине (левая / правая)': 'images/chuknaspine.jpg'
     };
 
     function getImageForExercise(name, side) {
