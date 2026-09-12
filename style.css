@@ -38,12 +38,17 @@
 
 /* ============ БАЗА ============ */
 [hidden] { display: none !important; }
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
 
 html {
     background: var(--bg);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    overscroll-behavior: none;
 }
 
 html, body {
@@ -58,10 +63,11 @@ html, body {
 
 body {
     background: var(--bg);
-    overscroll-behavior-y: none;
+    overscroll-behavior: none;
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+    touch-action: manipulation;
 }
 
 .ai-message, .log-item, .setting-hint, .card__name {
@@ -111,13 +117,16 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; margin: 0; }
     to { opacity: 1; transform: none; }
 }
 
+/* Экран ИИ фиксированной высоты, внутренний скролл */
 .screen--ai {
-    height: 100dvh;
+    height: 100vh;   /* fallback для старых iOS */
+    height: 100dvh;  /* современные браузеры */
     padding: 0;
     padding-bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
     overflow: hidden;
 }
 
+/* Когда открыта клавиатура — экран "прилипает" к видимой области */
 .screen--ai.is-keyboard-open {
     position: fixed;
     left: 0;
@@ -185,6 +194,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; margin: 0; }
     margin-right: -16px;
     padding: 0 16px;
     scroll-padding-left: 16px;
+    touch-action: pan-x;
 }
 .tabs-container::-webkit-scrollbar { display: none; }
 
@@ -437,7 +447,8 @@ img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
 .player {
     position: fixed;
     inset: 0;
-    height: 100dvh;
+    height: 100vh;   /* fallback для старых iOS */
+    height: 100dvh;  /* современные браузеры */
     background: var(--bg);
     z-index: 60;
     display: flex;
@@ -620,6 +631,7 @@ img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
     max-height: 92dvh;
     overflow-y: auto;
     overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
 }
 @keyframes sheetIn {
     from { transform: translateY(100%); }
@@ -846,6 +858,7 @@ img.plate { background: none; object-fit: cover; padding: 0; font-size: 0; }
     justify-content: center;
 }
 
+/* Когда клавиатура открыта — убираем нижний safe-area */
 .screen--ai.is-keyboard-open .ai-card__input {
     padding-bottom: 12px;
 }
