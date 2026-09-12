@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-          const exerciseImages = {
+    const exerciseImages = {
         // День A
         'Приседания с гантелью у груди': 'images/prisedsgantelgrud.jpg',
         'Румынская тяга с гантелями': 'images/ruminskaitiaga.jpg',
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function getExercisePlate(ex, side) {
         const imgSrc = getImageForExercise(ex.name, side);
         if (imgSrc) {
-            return `<img src="${imgSrc}" alt="${ex.name}" class="plate">`;
+            return `<img src="${imgSrc}" alt="${ex.name}" class="plate" onerror="this.outerHTML='<span class=\\'plate plate--letter\\'>${(ex.name||'?').trim().charAt(0).toUpperCase()}</span>'">`;
         }
         const letter = (ex.name || '?').trim().charAt(0).toUpperCase();
         return `<span class="plate plate--letter">${letter}</span>`;
@@ -376,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function() {
         aiBusy = true;
         showTypingIndicator();
 
-        const systemPrompt = `Ты — персональный фитнес-тренер в приложении "Фитнес для неё".
+        const systemPrompt = `Ты — персональный фитнес-тренер в приложении "Домашний фитнес".
 Отвечай кратко, полезно, поддерживающе и по-дружески на русском языке.
 
 Ты имеешь полное знание программы тренировок и истории пользователя.
@@ -615,8 +615,16 @@ ${buildWorkoutHistoryDescription()}
         playerMeta.textContent = step.setLabel+(step.repsLabel?` · ${step.repsLabel}`:'');
         if (step.note) { playerNote.hidden=false; playerNote.textContent=step.note; }
         else { playerNote.hidden=true; }
-        if (step.image) { playerImage.src=step.image; playerImage.alt=step.exName; playerImageContainer.hidden=false; }
-        else { playerImageContainer.hidden=true; }
+        if (step.image) {
+            playerImage.onerror = function() {
+                playerImageContainer.hidden = true;
+            };
+            playerImage.src=step.image;
+            playerImage.alt=step.exName;
+            playerImageContainer.hidden=false;
+        } else {
+            playerImageContainer.hidden=true;
+        }
 
         const nextExerciseBlock = document.getElementById('nextExercise');
         const nextExerciseName = document.getElementById('nextExerciseName');
