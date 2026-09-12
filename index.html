@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="color-scheme" content="dark light">
+    <title>Домашний фитнес</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0A0A0A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Домашний фитнес">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app" id="appContainer">
+
+    <!-- ===================== ЭКРАН: ТРЕНИРОВКА ===================== -->
+    <section class="screen screen--home is-active" data-screen="home" id="screenHome">
+        <header class="appbar">
+            <img class="appbar__logo" src="icons/icon-192.png" alt="">
+            <div class="appbar__brand">
+                <h1>Домашний фитнес</h1>
+                <p>2 дня · гантели + турник + кор</p>
+            </div>
+        </header>
+
+        <nav class="tabs-container" id="tabsContainer">
+            <div class="tabs" id="dayTabs">
+                <button class="tab" data-view="A"><span class="tab__label">День A · База<em>Низ · тяга · грудь · кор</em></span></button>
+                <button class="tab" data-view="B"><span class="tab__label">День B · Попа<em>Ягодицы · спина · кор</em></span></button>
+            </div>
+        </nav>
+
+        <main class="main" id="mainContent"></main>
+    </section>
+
+    <!-- ===================== ЭКРАН: ЖУРНАЛ ===================== -->
+    <section class="screen screen--page" data-screen="log" id="screenLog" hidden>
+        <header class="appbar appbar--page">
+            <h1>Журнал тренировок</h1>
+        </header>
+        <div class="page-body">
+            <div class="drawer__list" id="logList"></div>
+        </div>
+    </section>
+
+    <!-- ===================== ЭКРАН: ИИ-ТРЕНЕР ===================== -->
+    <section class="screen screen--ai" data-screen="ai" id="screenAi" hidden>
+        <header class="appbar appbar--page">
+            <h1>ИИ-тренер</h1>
+        </header>
+        <div class="ai-card__messages" id="aiMessages"></div>
+        <form class="ai-card__input" id="aiForm">
+            <input type="text" id="aiInput" placeholder="Напишите сообщение..." autocomplete="off" enterkeyhint="send">
+            <button type="submit" class="btn btn--primary" aria-label="Отправить">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+        </form>
+    </section>
+
+    <!-- ===================== ЭКРАН: НАСТРОЙКИ ===================== -->
+    <section class="screen screen--page" data-screen="settings" id="screenSettings" hidden>
+        <header class="appbar appbar--page">
+            <h1>Настройки</h1>
+        </header>
+        <div class="page-body">
+            <div class="settings-group">
+                <div class="setting-item">
+                    <span>Тема</span>
+                    <select id="themeSelect">
+                        <option value="system">Системная</option>
+                        <option value="light">Светлая</option>
+                        <option value="dark">Тёмная</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <span>Голосовые подсказки</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="voiceToggle">
+                        <span class="toggle__slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item setting-item--column">
+                    <span>API ключ OpenRouter</span>
+                    <input type="password" id="openaiKey" placeholder="sk-or-v1-..." autocomplete="off">
+                    <p class="setting-hint">Получите бесплатный ключ на openrouter.ai/keys. Хранится только на этом устройстве.</p>
+                    <button class="btn btn--ghost" id="saveKeyBtn" type="button">Сохранить ключ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- ===================== НИЖНЯЯ НАВИГАЦИЯ ===================== -->
+<nav class="bottom-nav" id="bottomNav" role="navigation">
+    <button class="bottom-nav__item is-active" data-action="home">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M4 20h5v-7h6v7h5V9l-8-5-8 5z"/></svg>
+        <span>Тренировка</span>
+    </button>
+    <button class="bottom-nav__item" data-action="log">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+        <span>Журнал</span>
+    </button>
+    <button class="bottom-nav__item" data-action="ai">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2zM9 11a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm6 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+        <span>ИИ-тренер</span>
+    </button>
+    <button class="bottom-nav__item" data-action="settings">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.33-.02-.64-.06-.94l2.02-1.58c.18-.14.23-.38.12-.56l-1.92-3.32c-.12-.19-.36-.26-.56-.18l-2.38.96c-.5-.38-1.06-.68-1.66-.88L14.46 3.5c-.04-.2-.2-.34-.4-.34H9.94c-.2 0-.36.14-.4.34l-.3 2.52c-.6.2-1.16.5-1.66.88l-2.38-.96c-.2-.08-.44-.01-.56.18l-1.92 3.32c-.12.19-.07.42.12.56l2.02 1.58c-.04.3-.06.61-.06.94 0 .33.02.64.06.94l-2.02 1.58c-.18.14-.23.38-.12.56l1.92 3.32c.12.19.36.26.56.18l2.38-.96c.5.38 1.06.68 1.66.88l.3 2.52c.04.2.2.34.4.34h3.84c.2 0 .36-.14.4-.34l.3-2.52c.6-.2 1.16-.5 1.66-.88l2.38.96c.2.08.44.01.56-.18l1.92-3.32c.12-.19.07-.42-.12-.56l-2.02-1.58zM12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+        <span>Ещё</span>
+    </button>
+</nav>
+
+<!-- ===================== ПЛЕЕР ===================== -->
+<div class="player" id="player" hidden>
+    <div class="player__top">
+        <button class="player__close" id="playerClose" aria-label="Закрыть тренировку">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <div class="player__crumbs" id="playerCrumbs"></div>
+    </div>
+    <div class="player__body">
+        <div class="player__exercise">
+            <span class="player__badge" id="playerNum">—</span>
+            <h2 id="playerName">Упражнение</h2>
+            <p class="player__meta" id="playerMeta">Подход 1 / 3</p>
+            <div class="player__next" id="nextExercise" hidden>
+                <span>Следующее:</span>
+                <strong id="nextExerciseName"></strong>
+            </div>
+            <p class="player__note" id="playerNote" hidden></p>
+        </div>
+        <div class="player__image" id="playerImageContainer" hidden>
+            <img id="playerImage" src="" alt="">
+        </div>
+        <div class="ring" id="ring">
+            <div class="ring__outer" id="ringOuter">
+                <div class="ring__inner">
+                    <span class="ring__time" id="ringTime">00:00</span>
+                    <span class="ring__phase" id="ringPhase">ГОТОВ</span>
+                </div>
+            </div>
+        </div>
+        <div class="player__rest-adjust" id="restAdjust" hidden>
+            <button class="rest-btn" id="restMinus">−5с</button>
+            <button class="rest-btn" id="restPlus">+5с</button>
+        </div>
+        <div class="player__controls">
+            <button class="btn btn--ghost" id="skipBtn">Пропустить</button>
+            <button class="btn btn--primary" id="mainActionBtn">Старт</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== МОДАЛКА: ЗАВЕРШЕНИЕ ===================== -->
+<div class="modal" id="qualityModal" hidden>
+    <div class="modal__card">
+        <div class="modal__handle"></div>
+        <h3>Тренировка завершена</h3>
+        <p>Во всех подходах базовых упражнений получилось выполнить максимум повторений?</p>
+        <div class="weight-input">
+            <label for="workoutWeight">Вес гантелей (кг):</label>
+            <input type="number" id="workoutWeight" min="0" step="0.5" placeholder="Напр. 4" inputmode="decimal">
+        </div>
+        <div class="modal__row">
+            <button class="btn btn--ghost" id="qualityNo">Не всегда</button>
+            <button class="btn btn--primary" id="qualityYes">Максимум!</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
