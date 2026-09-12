@@ -198,19 +198,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* ========== THEME ========== */
     function applyTheme(mode) {
-        const html = document.documentElement;
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const effective = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
+        if (mode === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        else if (mode === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        else document.documentElement.removeAttribute('data-theme');
 
-        if (effective === 'dark') html.setAttribute('data-theme', 'dark');
-        else html.removeAttribute('data-theme');
+        const isLight = mode === 'light' ||
+            (mode !== 'dark' && window.matchMedia('(prefers-color-scheme: light)').matches);
 
-        const isLight = effective === 'light';
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-        if (metaThemeColor) metaThemeColor.setAttribute('content', isLight ? '#FFF5F8' : '#1A0F14');
-
-        const statusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
-        if (statusBar) statusBar.setAttribute('content', isLight ? 'default' : 'black-translucent');
+        if (metaThemeColor) metaThemeColor.setAttribute('content', isLight ? '#FFFFFF' : '#0A0A0A');
     }
 
     /* ========== VOICE ========== */
@@ -260,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (voiceToggleCheckbox) voiceToggleCheckbox.checked = voiceEnabled;
     if (themeSelect) {
-        themeSelect.value = localStorage.getItem('theme') || 'light';
+        themeSelect.value = localStorage.getItem('theme') || 'system';
         applyTheme(themeSelect.value);
     }
     if (openaiKeyInput) openaiKeyInput.value = getApiKey();
